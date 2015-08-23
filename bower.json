@@ -1,0 +1,19 @@
+{
+  "name": "interactive-pyramid",
+  "version": "0.0.0",
+  "homepage": "https://github.com/richhastings/interactive-pyramid",
+  "authors": [
+    "Rich Hastings <rich.hastings@me.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "~2.1.4"
+  }
+}
