@@ -1,4 +1,5 @@
 node_modules/*
+dev/all.js
 dist/*
 .sass-cache/*
 bower_components/*
