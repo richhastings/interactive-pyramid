@@ -22,30 +22,7 @@ module.exports = function(grunt) {
       }
     },
 
-
     
-    watch: {
-
-    	main: {
-    		files: ['dev/*.html', 'dev/**/*.scss', 'dev/js/*.js'],
-    		tasks: ['concat', 'uglify', 'sass', 'postcss', 'copy', 'clean:css'],
-    		options: {
-      			livereload: true,
-    		},
-    	}
-    },
-
-    copy: {
-    	main: {
-    		files: [{
-    			cwd: 'dev/',
-    			expand: true,
-    			src: ['*.html', '*.css', '**/*.png'],
-    			dest: 'dist/',
-    			filter: 'isFile'
-    		}]
-    	}
-    },
 
     sass: {
     	dist: {
@@ -72,7 +49,47 @@ module.exports = function(grunt) {
       dist: {
         src: 'dev/pyramid.css'
       }
-    }
+    },
+
+    copy: {
+    	main: {
+    		files: [{
+    			cwd: 'dev/',
+    			expand: true,
+    			src: ['*.html', '*.css'],
+    			dest: 'dist/',
+    			filter: 'isFile'
+    		}]
+    	}
+    },
+
+    watch: {
+
+    	html: {
+    		files: ['dev/*.html'],
+    		tasks: ['copy'],
+    		options: {
+      			livereload: true
+    		},
+    	},
+
+    	css: {
+    		files: ['dev/**/*.scss'],
+    		tasks:['sass', 'postcss', 'copy', 'clean:css'],
+    		options: {
+      			livereload: true
+    		},
+    	},
+
+    	js: {
+    		files: ['dev/js/*.js'],
+    		tasks: ['concat', 'uglify','copy'],
+    		options: {
+      			livereload: true
+    		},
+    	}
+
+    },
 
   });
 
@@ -85,6 +102,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-postcss');
 
 
-  grunt.registerTask('default', ['clean:dist', 'concat', 'uglify', 'sass', 'postcss', 'copy', 'clean:css', 'watch']);
+  grunt.registerTask('default', ['clean:dist', 'concat', 'uglify', 'sass', 'postcss', 'copy', 'clean:css']);
+  grunt.registerTask('dev', ['clean:dist', 'concat', 'uglify', 'sass', 'postcss', 'copy', 'clean:css', 'watch']);
 
 };
